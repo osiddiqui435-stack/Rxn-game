@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Reaction Challenge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <canvas id="particles"></canvas>
+    
+    <main id="app">
+        <!-- HOME SCREEN -->
+        <section id="home-screen" class="screen active">
+            <div class="title-container">
+                <div class="title-decoration"></div>
+                <h1 class="main-title">ULTIMATE REACTION CHALLENGE</h1>
+                <p class="subtitle">Test your reflexes. Dominate the leaderboard.</p>
+            </div>
+            
+            <div class="button-group">
+                <button class="neon-btn primary" onclick="startNormalFlow()">
+                    <span class="btn-icon">⚡</span>
+                    <span class="btn-text">NORMAL REACTION TEST</span>
+                </button>
+                <button class="neon-btn secondary" onclick="startFriendFlow()">
+                    <span class="btn-icon">👥</span>
+                    <span class="btn-text">FRIEND GUESS CHALLENGE</span>
+                </button>
+            </div>
+            
+            <div class="taunt-text">Can you beat your friends?</div>
+            
+            <div class="leaderboards-container">
+                <div class="leaderboard">
+                    <h3 class="leaderboard-title">
+                        <span class="title-icon">⚡</span>
+                        NORMAL MODE TOP 10
+                    </h3>
+                    <div id="normal-leaderboard" class="leaderboard-list"></div>
+                </div>
+                
+                <div class="leaderboard">
+                    <h3 class="leaderboard-title">
+                        <span class="title-icon">👥</span>
+                        FRIEND CHALLENGE WINS
+                    </h3>
+                    <div id="friend-leaderboard" class="leaderboard-list"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NAME INPUT SCREEN -->
+        <section id="name-input-screen" class="screen">
+            <div class="input-panel">
+                <h2 class="panel-title">ENTER YOUR NAME</h2>
+                <div class="input-wrapper">
+                    <input type="text" id="player-name-input" class="styled-input" maxlength="15" placeholder="Your name...">
+                    <div class="input-glow"></div>
+                </div>
+                <button class="neon-btn primary" onclick="confirmPlayerName()">
+                    <span>START GAME</span>
+                </button>
+                <button class="back-btn" onclick="goHome()">Back</button>
+            </div>
+        </section>
+
+        <!-- FRIEND INPUT SCREEN -->
+        <section id="friend-input-screen" class="screen">
+            <div class="input-panel large">
+                <h2 class="panel-title">FRIEND GUESS CHALLENGE</h2>
+                <p class="panel-subtitle">Enter both player names and the guess</p>
+                
+                <div class="dual-input">
+                    <div class="input-group">
+                        <label>Player Name</label>
+                        <input type="text" id="friend-player-name" class="styled-input" maxlength="12" placeholder="Player...">
+                    </div>
+                    <div class="input-group">
+                        <label>Friend Name</label>
+                        <input type="text" id="friend-guesser-name" class="styled-input" maxlength="12" placeholder="Friend...">
+                    </div>
+                </div>
+                
+                <div class="guess-section">
+                    <label>Friend's Guess (2 digits)</label>
+                    <div class="guess-input-container">
+                        <span class="input-prefix">0.</span>
+                        <input type="text" id="friend-guess-input" class="styled-input guess" maxlength="2" placeholder="23" inputmode="numeric">
+                        <span class="input-suffix">sec</span>
+                    </div>
+                </div>
+                
+                <button class="neon-btn secondary" onclick="confirmFriendSetup()">
+                    <span>CONFIRM & START</span>
+                </button>
+                <button class="back-btn" onclick="goHome()">Back</button>
+            </div>
+        </section>
+
+        <!-- NORMAL MODE -->
+        <section id="normal-mode" class="screen">
+            <div id="game-panel" class="game-panel">
+                <div id="game-content" class="game-content">
+                    <div class="player-badge" id="player-badge"></div>
+                    <h2 class="mode-title">NORMAL REACTION TEST</h2>
+                    <p class="instruction">Click START, then click when the screen turns GREEN</p>
+                    <button id="start-btn" class="neon-btn primary large" onclick="startGame()">
+                        <span>START</span>
+                    </button>
+                </div>
+            </div>
+            <button class="back-btn" onclick="goHome()">Back to Menu</button>
+        </section>
+
+        <!-- FRIEND MODE GAME -->
+        <section id="friend-mode-game" class="screen">
+            <div id="friend-game-panel" class="game-panel">
+                <div id="friend-game-content" class="game-content">
+                    <div class="players-display" id="players-display"></div>
+                    <div class="guess-display" id="guess-display"></div>
+                    <button class="neon-btn secondary large" onclick="startFriendGame()">
+                        <span>START</span>
+                    </button>
+                </div>
+            </div>
+            <button class="back-btn" onclick="goHome()">Back to Menu</button>
+        </section>
+
+        <!-- RESULT SCREEN -->
+        <section id="result-screen" class="screen">
+            <div id="result-panel" class="game-panel result-panel">
+                <div id="result-content"></div>
+            </div>
+        </section>
+    </main>
+
+    <canvas id="confetti-canvas"></canvas>
+
+    <script src="script.js"></script>
+</body>
+</html>
